@@ -1,0 +1,62 @@
+<div class="container">
+    <h4>Add new employee</h4>
+    <form #employeeForm = "ngForm" (ngSubmit)="addEmployee(employeeForm)">
+      <input type="hidden" name="_id" #_id="ngModel"
+           [(ngModel)]="employeeService.selectedEmployee._id">
+      <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="text" class="form-control" name="name" #name="ngModel"
+          [(ngModel)]="employeeService.selectedEmployee.name" required
+          [ngClass]="{ 'is-invalid': submitted &amp;&amp; employeeForm.controls.name.errors }">
+        <div *ngIf="submitted &amp;&amp; employeeForm.controls.name.errors" class="text-danger">
+          <div *ngIf="employeeForm.controls.name.errors.required">First Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input type="text" class="form-control" name="lastname" #name="ngModel"
+            [(ngModel)]="employeeService.selectedEmployee.lastname" required
+            [ngClass]="{ 'is-invalid': submitted &amp;&amp; employeeForm.controls.lastname.errors }">
+          <div *ngIf="submitted &amp;&amp; employeeForm.controls.lastname.errors" class="text-danger">
+            <div *ngIf="employeeForm.controls.lastname.errors.required">Last Name is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="position">Position</label>
+        <input type="text" class="form-control" name="position" #position="ngModel"
+          [(ngModel)]="employeeService.selectedEmployee.position" required
+          [ngClass]="{ 'is-invalid': submitted &amp;&amp; employeeForm.controls.position.errors }">
+        <div *ngIf="submitted &amp;&amp; employeeForm.controls.position.errors" class="text-danger">
+          <div *ngIf="employeeForm.controls.position.errors.required">Position is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label for="office">Office</mat-label>
+          <mat-select [(ngModel)]="employeeService.selectedEmployee.office" required name="office">
+            <mat-option *ngFor="let office of offices" [value]="office.value">
+              {{office.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label for="salary">Salary</label>
+        <input type="number" class="form-control" name="salary" #salary="ngModel"
+            [(ngModel)]="employeeService.selectedEmployee.salary" required
+            [ngClass]="{ 'is-invalid': submitted &amp;&amp; employeeForm.controls.salary.errors }">
+            <div *ngIf="submitted &amp;&amp; employeeForm.controls.salary.errors" class="text-danger">
+                <div *ngIf="employeeForm.controls.salary.errors.required">Salary is required</div>
+            </div>
+      </div>
+      <div class="car-action">
+          <div class="input-field col s12">
+              <button class="btn">Save</button>
+              <button class="btn right" (click)="resetForm(employeeForm)">Clean</button>
+
+          </div>
+      </div>
+    </form>
+  </div>
+
