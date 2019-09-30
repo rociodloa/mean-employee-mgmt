@@ -9,7 +9,7 @@ Docker version 19.03.1
 
 ### Clone the repo
 ```bash
-$ git clone https://github.com/gangachris/mean-docker
+$ git clone https://github.com/rociodloa/mean-employee-mgmt.git
 ```
  ### Run docker
  ```bash
