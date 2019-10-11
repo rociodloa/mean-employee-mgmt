@@ -5,9 +5,27 @@ const mongoose = require('mongoose');
 //const dbHost = 'mongodb://database/mean-docker';
 const dbHost = 'mongodb://localhost/mean-employees';
 
-mongoose
+/*mongoose
     .connect(dbHost, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(db => console.log('DB is connected'))
-    .catch(err => console.error('Error connecting' + err ));
+    .catch(err => console.error('Error connecting' + err ));*/
+
+    var connectWithRetry = function() {
+
+        return mongoose.connect(dbHost, { useNewUrlParser: true, useUnifiedTopology: true }, function(err) {
+            if (err) {
+                console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
+                setTimeout(connectWithRetry, 1000);
+            }
+        });
+
+        /*return mongoose.connect(db, function(err) {
+            if (err) {
+                console.error('Failed to connect to mongo on startup - retrying in 1 sec', err);
+                setTimeout(connectWithRetry, 1000);
+            }
+        });*/
+    };
+    connectWithRetry();
 
 module.exports = mongoose; 

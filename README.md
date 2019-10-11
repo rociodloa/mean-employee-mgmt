@@ -21,8 +21,11 @@ $ git clone https://github.com/rociodloa/mean-employee-mgmt.git
 
 
 
+### Run angular
+ng serve
+
 ### Run express server
 npm run dev
 
  ### Run docker mongo image
- docker start mongo
+docker start mongo

@@ -26,11 +26,11 @@ export class ProjectService {
     console.log(project);
     return this.http.post(this.URL_API, project);
   }
-/*
-  putEmployee(employee: Employee) {
-    return this.http.put(this.URL_API + `/${employee._id}`, employee);
-  }
 
+  putProject(project: Project) {
+    return this.http.put(this.URL_API + `/${project._id}`, project);
+  }
+/*
   deleteEmployee(id: string) {
     return this.http.delete(this.URL_API + `/${id}`);
   }*/
